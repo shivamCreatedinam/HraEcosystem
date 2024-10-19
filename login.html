@@ -14,6 +14,11 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
   </head>
 
   <body
@@ -122,8 +127,11 @@
                     >
                       Contact
                     </a> -->
-                    <a href="/login.html" class=" qb tg gi oi xi kk ul em ko so ip cq 2xl:ud-ml-12">
-                      Login 
+                    <a
+                      href="/login.html"
+                      class="qb tg gi oi xi kk ul em ko so ip cq 2xl:ud-ml-12"
+                    >
+                      Login
                     </a>
                   </li>
                 </ul>
@@ -179,13 +187,34 @@
             <span>or use your email for registration</span>
             <input type="text" name="name" placeholder="Name" required />
             <input type="email" name="email" placeholder="Email" required />
-            <input type="password" name="password" placeholder="Password" id="password" minlength="8" required />
-            <input type="password" name="verifyPassword" placeholder="Verify Password" id="verifyPassword" required />
-            <input type="text" name="phone" placeholder="Phone No." pattern="^\d{10}$" title="Enter a valid 10-digit phone number" required />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              id="password"
+              minlength="8"
+              required
+            />
+            <input
+              type="password"
+              name="verifyPassword"
+              placeholder="Verify Password"
+              id="verifyPassword"
+              required
+            />
+            <input
+              type="text"
+              name="phone"
+              placeholder="Phone No."
+              pattern="^\d{10}$"
+              title="Enter a valid 10-digit phone number"
+              required
+            />
             <button>Sign Up</button>
-            <p class="forMobile">Already have an account? <span id="mobileSignIn">Sign In</span></p>
-     
-                      </form>
+            <p class="forMobile">
+              Already have an account? <span id="mobileSignIn">Sign In</span>
+            </p>
+          </form>
         </div>
         <div class="form-container sign-in-container">
           <form id="loginForm">
@@ -199,8 +228,9 @@
               required
             />
             <button>Sign In</button>
-            <p class="forMobile">Don't have an account? <span id="mobileSignUp">Sign Up</span></p>
-
+            <p class="forMobile">
+              Don't have an account? <span id="mobileSignUp">Sign Up</span>
+            </p>
           </form>
         </div>
         <div class="overlay-container">
@@ -330,9 +360,7 @@
                 <a href="javascript:void(0)" class="ob ii qi xi kk ul fm">
                   Contact
                 </a>
-                <a href="/login.html" class=" ob ii qi xi kk ul fm">
-                  Login 
-                </a>
+                <a href="/login.html" class="ob ii qi xi kk ul fm"> Login </a>
               </div>
             </div>
           </div>
@@ -452,9 +480,11 @@
     >
       <span class="cb bc qc sd we xe cf"></span>
     </a>
-   
 
-
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
 
     <script
       data-cfasync="false"
@@ -462,56 +492,55 @@
     ></script>
     <!-- animation for form swap -->
     <script>
-// Existing elements for desktop view
-const signUpButton = document.getElementById("signUp");
-const signInButton = document.getElementById("signIn");
-const container = document.getElementById("container");
+      // Existing elements for desktop view
+      const signUpButton = document.getElementById("signUp");
+      const signInButton = document.getElementById("signIn");
+      const container = document.getElementById("container");
 
-// New elements for mobile view
-document.getElementById("mobileSignUp").addEventListener("click", function() {
-  document.querySelector(".sign-in-container").style.display = "none";
-  document.querySelector(".sign-up-container").style.display = "block";
-});
+      // New elements for mobile view
+      document
+        .getElementById("mobileSignUp")
+        .addEventListener("click", function () {
+          document.querySelector(".sign-in-container").style.display = "none";
+          document.querySelector(".sign-up-container").style.display = "block";
+        });
 
-document.getElementById("mobileSignIn").addEventListener("click", function() {
-  document.querySelector(".sign-up-container").style.display = "none";
-  document.querySelector(".sign-in-container").style.display = "block";
-});
+      document
+        .getElementById("mobileSignIn")
+        .addEventListener("click", function () {
+          document.querySelector(".sign-up-container").style.display = "none";
+          document.querySelector(".sign-in-container").style.display = "block";
+        });
 
-// Desktop sign-up button
-signUpButton.addEventListener("click", () => {
-  container.classList.add("right-panel-active");
-});
+      // Desktop sign-up button
+      signUpButton.addEventListener("click", () => {
+        container.classList.add("right-panel-active");
+      });
 
-// Desktop sign-in button
-signInButton.addEventListener("click", () => {
-  container.classList.remove("right-panel-active");
-});
-
-
-
+      // Desktop sign-in button
+      signInButton.addEventListener("click", () => {
+        container.classList.remove("right-panel-active");
+      });
     </script>
-
 
     <!-- Validation -->
     <script>
-      //  Fetch the client's IP address from ipify 
+      //  Fetch the client's IP address from ipify
+      let token = "";
+      let userIP = "";
 
-      fetch('https://api.ipify.org?format=json')
-            .then(response => response.json())
-            .then(data => {
-                // Display the IP address
-                const IP_address = data.ip;
-                console.log(data.ip)
-            })
-            .catch(error => {
-                console.error('Error fetching IP address:', error);
-            });
+      fetch("https://api.ipify.org?format=json")
+        .then((response) => response.json())
+        .then((data) => {
+          // Store the IP address for use in form submission
+          userIP = data.ip;
+          console.log("User IP:", userIP);
+        })
+        .catch((error) => {
+          console.error("Error fetching IP address:", error);
+        });
 
-
-      const signUp = document.getElementById("signup");
-      const logIn = document.getElementById("signin");
-      
+      // Handle form submission
       document
         .getElementById("signupForm")
         .addEventListener("submit", function (event) {
@@ -522,7 +551,13 @@ signInButton.addEventListener("click", () => {
             document.getElementById("verifyPassword").value;
 
           if (password !== verifyPassword) {
-            alert("Passwords do not match!");
+            Toastify({
+              text: "Passwords do not match!",
+              duration: 3000,
+              gravity: "top",
+              position: "right",
+              backgroundColor: "#ff5722",
+            }).showToast();
             return;
           }
 
@@ -530,8 +565,56 @@ signInButton.addEventListener("click", () => {
           if (!form.checkValidity()) {
             form.reportValidity();
           } else {
-            // submit the form or send data to the server here.
-            alert("Form submitted successfully!");
+            // Payload 
+            const payload = {
+              fullName: form.elements["name"].value,
+              email: form.elements["email"].value,
+              password: password,
+              verifyPassword: verifyPassword,
+              phoneNumber: form.elements["phone"].value,
+              registerPlatform: "coin-landing",
+              ipAddress: userIP || "unknown",
+              appVersion: "none",
+              deviceOsVersion: "none",
+              deviceName: "none",
+              deviceModel: "none",
+              deviceManufacturer: "none",
+            };
+
+            // POST request to the server
+            fetch("https://hra-experience.com/api/auth/register", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(payload),
+            })
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error("Network response was not ok");
+                }
+                return response.json();
+              })
+              .then((data) => {
+                Toastify({
+                  text: "Form submitted successfully!",
+                  duration: 3000,
+                  gravity: "top",
+                  position: "right",
+                  backgroundColor: "#4caf50", 
+                }).showToast();
+                console.log(data);
+              })
+              .catch((error) => {
+                Toastify({
+                  text: "Error submitting the form: " + error.message,
+                  duration: 3000,
+                  gravity: "top",
+                  position: "right",
+                  backgroundColor: "#ff5722", 
+                }).showToast();
+                console.error("Error:", error);
+              });
           }
         });
 
