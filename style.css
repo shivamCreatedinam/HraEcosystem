@@ -3511,6 +3511,11 @@ main .hero img {
   transition: transform 80ms ease-in;
 }
 
+#id {
+  color: white !important;
+}
+
+
 .login-div button:active {
   transform: scale(0.95);
 }
